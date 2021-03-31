@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Formas</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Quicksand", sans-serif;
+            }
+            main {
+                height: 100vh;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .date-form p {
+                margin-top: 2em;
+            }
+
+            .math-form div {
+                margin-top: 2em;
+            }
+
+            .math-inp {
+                padding: 0.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <form class="date-form">
+                <p>Šodienas datums <input name="datums" id="date-inp" /></p>
+                <p>
+                    Ja gribi uzzināt šodienas datumu, spied pogu DATUMS
+                    <input
+                        class="math-inp"
+                        onclick="datums.value=new Date();"
+                        name="poga"
+                        value="DATUMS"
+                        type="button"
+                    />
+                </p>
+                <p>
+                    Ja gribi izdzēst datumua lodziņa saturu, spied pogu RESET
+                    <input class="math-inp" value="RESET" type="reset" />
+                </p>
+                <p>
+                    Uzzināt datumu pec n dienām
+                    <input
+                        class="math-inp"
+                        type="input"
+                        name="newDate"
+                        oninput="setNewDate(newDate.value);"
+                    />
+                </p>
+            </form>
+            <form class="math-form">
+                <div>1.skaitlis<input type="text" name="sk1" /></div>
+                <div>2.skaitlis<input type="text" name="sk2" /></div>
+                <div style="text-align: center">
+                    <input
+                        class="math-inp"
+                        value="*"
+                        name="reiz"
+                        onclick="rez.value=sk1.value*sk2.value"
+                        type="button"
+                    />
+                    <input
+                        class="math-inp"
+                        value="+"
+                        name="reiz"
+                        onclick="rez.value=sk1.value+sk2.value"
+                        type="button"
+                    />
+                    <input
+                        class="math-inp"
+                        value="-"
+                        name="reiz"
+                        onclick="rez.value=sk1.value-sk2.value"
+                        type="button"
+                    />
+                    <input
+                        class="math-inp"
+                        value="/"
+                        name="reiz"
+                        onclick="rez.value=sk1.value/sk2.value"
+                        type="button"
+                    />
+                </div>
+                <div>Rezultāts<input name="rez" /></div>
+                <div style="text-align: center">
+                    <input class="math-inp" value="RESET" type="reset" />
+                </div>
+            </form>
+        </main>
+    </body>
+    <script>
+        setNewDate = (strDays) => {
+            const myCurrentDate = new Date();
+            if (strDays) {
+                const days = parseInt(strDays);
+                let myFutureDate = new Date(myCurrentDate);
+                myFutureDate.setDate(myFutureDate.getDate() + days);
+                document.querySelector("#date-inp").value = myFutureDate;
+            } else {
+                document.querySelector("#date-inp").value = myCurrentDate;
+            }
+        };
+    </script>
+</html>
